@@ -6,7 +6,7 @@ from utils import *
 from torch.autograd import Variable
 import torch
 
-save = '/content/drive/MyDrive/IP - 7th sem/SK-SMALL/ADA_LSN/eval-{}'.format(time.strftime("%Y%m%d-%H%M%S"))
+save = '/content/drive/MyDrive/IP - 7th sem/SK-LARGE/ADA_LSN/eval-{}'.format(time.strftime("%Y%m%d-%H%M%S"))
 create_exp_dir(save)
 
 log_format = '%(asctime)s %(message)s'
@@ -25,8 +25,8 @@ class Trainer(object):
         self.optimizer = optimizer
         self.dataloader = dataloader
 
-        if not os.path.exists('/content/drive/MyDrive/IP - 7th sem/SK-SMALL/ADA_LSN/weights'):
-            os.makedirs('/content/drive/MyDrive/IP - 7th sem/SK-SMALL/ADA_LSN/weights')
+        if not os.path.exists('/content/drive/MyDrive/IP - 7th sem/SK-LARGE/ADA_LSN/weights'):
+            os.makedirs('/content/drive/MyDrive/IP - 7th sem/SK-LARGE/ADA_LSN/weights')
 
         self.timeformat = '%Y-%m-%d %H:%M:%S'
 
@@ -78,9 +78,9 @@ class Trainer(object):
 
             if (step + 1) % self.args.save_interval == 0:
                 torch.save(self.network.state_dict(),
-                           '/content/drive/MyDrive/IP - 7th sem/SK-SMALL/ADA_LSN/weights/inception_sklarge/skel_{}.pth'.format(step + 1))
+                           '/content/drive/MyDrive/IP - 7th sem/SK-LARGE/ADA_LSN/weights/inception_sklarge/skel_{}.pth'.format(step + 1))
         torch.save(self.network.state_dict(),
-                   '/content/drive/MyDrive/IP - 7th sem/SK-SMALL/ADA_LSN/weights/inception_sklarge/skel_{}.pth'.format(self.args.max_step))
+                   '/content/drive/MyDrive/IP - 7th sem/SK-LARGE/ADA_LSN/weights/inception_sklarge/skel_{}.pth'.format(self.args.max_step))
         return lossAcc / self.args.disp_interval / self.args.iter_size
 
     def adjustLR(self):
