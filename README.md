@@ -1,3 +1,14 @@
+---self-added instructions---
+To train ADA-LSN, run: python train_AdaLSN.py
+The given code is modified for running on google colabortatory, please change the paths according to your use:
+1. engines/trainer_AdaLSN.py: change the "save" path, path for weights, path for saving the network. 
+2. train_AdaLSN.py: arg data1: root directory, arg data2: path for list of images and path for inception-v3 network.
+
+
+
+
+
+
 ## SDL-Skeleton
 
    **SDL-Skeleton is a FREE toolbox for object skeleton detection, which also has strong adaptability to general pixel-wise binary classification tasks, such as edge detection, saliency detection, line detetection, building extraction and road extraction. This code is based on the implementation of  [HED](https://github.com/s9xie/hed) and [SRN](https://github.com/KevinKecc/SRN).**
