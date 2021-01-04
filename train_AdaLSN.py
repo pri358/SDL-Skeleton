@@ -9,8 +9,8 @@ import os
 from Ada_LSN.genotypes import geno_inception as geno
 
 parser = argparse.ArgumentParser(description='TRAIN SKLARGE')
-parser.add_argument('--data1', default='./SKLARGE/', type=str)
-parser.add_argument('--data2', default='./SKLARGE/train_pairRN60_255_s_all.lst', type=str)
+parser.add_argument('--data1', default='/content/drive/MyDrive/IP - 7th sem/SK-LARGE', type=str)
+parser.add_argument('--data2', default='/content/drive/MyDrive/IP - 7th sem/SK-LARGE/aug_data/pairList.txt', type=str)
 parser.add_argument('--gpu_id', default=0, type=int)
 parser.add_argument('--INF', default=1e6, type=int)
 parser.add_argument('--C', default=64, type=int)  # 32/64/128
@@ -47,7 +47,7 @@ def train_model(g, dataloader, args):
     except Exception as e:
         pass
     net = Network(args.C, args.numu_layers, args.u_layers, geno,
-                  pretrained_model='./pretrained_model/inceptionV3.pth').cuda(args.gpu_id)
+                  pretrained_model='/content/drive/MyDrive/IP - 7th sem/SK-SMALL/inception_v3_google-1a9a5a14.pth').cuda(args.gpu_id)
     logging.info('params:%.3fM' % count_parameters_in_MB(net))
     lr = args.lr / args.iter_size
     optimizer = optim.Adam(net.parameter(args.lr), lr=lr, betas=(0.9, 0.999), weight_decay=args.weight_decay)
