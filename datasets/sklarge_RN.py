@@ -11,14 +11,14 @@ class TrainDataset(Dataset):
     def __init__(self, fileNames, rootDir, transform=None):
         self.rootDir = rootDir
         self.transform = transform
-        self.frame = pd.read_csv(fileNames, dtype=str, delimiter=' ', header=None)
+        self.frame = pd.read_csv(fileNames, dtype=str, delimiter=',', header=None)
 
     def __len__(self):
         return len(self.frame)
 
     def __getitem__(self, idx):
-        inputName = os.path.join(self.rootDir, self.frame.iloc[idx, 0])
-        targetName = os.path.join(self.rootDir, self.frame.iloc[idx, 1])
+        inputName = self.frame.iloc[idx, 0]
+        targetName = self.frame.iloc[idx, 1]
 
         inputImage = io.imread(inputName)
         if len(inputImage.shape) == 2:
