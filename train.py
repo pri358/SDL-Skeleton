@@ -15,10 +15,10 @@ def count_parameters_in_MB(model):
 
 def parse_args():
     parser = argparse.ArgumentParser(description='TRAIN SKLARGE')
-    parser.add_argument('--root', default='./SKLARGE', type=str)
-    parser.add_argument('--files', default='./SKLARGE/aug_data/train_pair.lst', type=str)
+    parser.add_argument('--root', default='/content/drive/MyDrive/IP - 7th sem/SK-SMALL/aug_data', type=str)
+    parser.add_argument('--files', default='/content/drive/MyDrive/IP - 7th sem/SK-SMALL/aug_data/pairList.txt', type=str)
     parser.add_argument('--network', default='hed', type=str)
-    parser.add_argument('--pretrained_model', default='pretrained_model/vgg16_caffe.pth', type=str)
+    parser.add_argument('--pretrained_model', default='/content/drive/MyDrive/IP - 7th sem/SK-LARGE/vgg16.pth', type=str)
     parser.add_argument('--gpu_id', default=0, type=int)
     parser.add_argument('--lr', default=1e-6, type=float)
     parser.add_argument('--lr_step', default=20000, type=int)
@@ -27,7 +27,7 @@ def parse_args():
     parser.add_argument('--weight_decay', default=0.0002, type=float)
     parser.add_argument('--iter_size', default=10, type=int)
     parser.add_argument('--max_step', default=25000, type=int)
-    parser.add_argument('--save_interval', default=5000, type=int)
+    parser.add_argument('--save_interval', default=500, type=int)
     parser.add_argument('--disp_interval', default=50, type=int)
     parser.add_argument('--resume_iter', default=0, type=int)
     parser.add_argument('--resume_path', default=None, type=str)
