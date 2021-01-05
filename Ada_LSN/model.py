@@ -109,7 +109,7 @@ class Network(nn.Module):
         self.up4 = lambda x: F.interpolate(x, scale_factor=4, mode='bilinear', align_corners=False)
         self.up8 = lambda x: F.interpolate(x, scale_factor=8, mode='bilinear', align_corners=False)
 
-    def forward(self, input0, input1):
+    def forward(self, input0, input1 = None):
         size = input0.size()[2:4]
         conv1, conv2, conv3, conv4, conv5 = self.network(input0)
         dsn1 = self.dsn1(conv1)
@@ -228,12 +228,12 @@ class Network(nn.Module):
         if self.genotype[2][5][4] == 1 and self.genotype[0][4]:
             loss += b1(out5, input1)
         return loss + loss_fuse, loss_fuse  # for train
-        # if input1 is not None:
-        #     loss_fuse = b1(out_fuse, input1)
-        # else:
-        #     loss_fuse = None
-        # out = torch.sigmoid(out_fuse)
-        # return out, loss_fuse   # for test
+#         if input1 is not None:
+#             loss_fuse = b1(out_fuse, input1)
+#         else:
+#             loss_fuse = None
+#         out = torch.sigmoid(out_fuse)
+#         return out, loss_fuse   # for test
 
     def crop(self, d, region):  # use for crop the keep to input data
         x, y, h, w = region
