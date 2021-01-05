@@ -13,8 +13,8 @@ class Trainer(object):
         self.optimizer = optimizer
         self.dataloader = dataloader
 
-        if not os.path.exists('weights'):
-            os.makedirs('weights')
+        if not os.path.exists('/content/drive/MyDrive/IP - 7th sem/SK-SMALL/srn/weights'):
+            os.makedirs('/content/drive/MyDrive/IP - 7th sem/SK-SMALL/srn/weights')
 
         self.timeformat = '%Y-%m-%d %H:%M:%S'
 
@@ -62,9 +62,9 @@ class Trainer(object):
 
             if (step + 1) % self.args.save_interval == 0:
                 torch.save(self.network.state_dict(),
-                           './weights/hed_sklarge/{}_{}.pth'.format(self.args.network, step + 1))
+                           '/content/drive/MyDrive/IP - 7th sem/SK-SMALL/srn/weights/srn_{}_{}.pth'.format(self.args.network, step + 1))
 
-        torch.save(self.network.state_dict(), './weights/hed_sklarge/{}.pth'.format(self.args.network))
+        torch.save(self.network.state_dict(), '/content/drive/MyDrive/IP - 7th sem/SK-SMALL/srn/weights/{}.pth'.format(self.args.network))
 
     def adjustLR(self):
         for param_group in self.optimizer.param_groups:
