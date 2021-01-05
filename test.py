@@ -13,7 +13,7 @@ import importlib
 from datasets.sklarge import TestDataset
 
 
-network = 'hed'
+network = 'srn'
 gpu_id = 0
 
 torch.set_default_tensor_type('torch.cuda.FloatTensor')
@@ -21,13 +21,13 @@ torch.cuda.set_device(gpu_id)
 
 Network = getattr(importlib.import_module('networks.' + network), 'Network')
 net = Network().cuda(gpu_id).eval()
-net.load_state_dict(torch.load('./weights/hed_sklarge/hed_30000.pth', map_location=lambda storage, loc: storage))
+net.load_state_dict(torch.load('/content/drive/MyDrive/IP - 7th sem/SK-SMALL/srn/weights/srn.pth', map_location=lambda storage, loc: storage))
 
-root = './OriginalSKLARGE/images/test'
-files = './OriginalSKLARGE/test.lst'
+root = '/content/drive/MyDrive/IP - 7th sem/SK-SMALL/SK506/images/test'
+# files = './OriginalSKLARGE/test.lst'
 
 
-dataset = TestDataset(files, root)
+dataset = TestDataset(root)
 dataloader = list(DataLoader(dataset, batch_size=1))
 
 
@@ -55,7 +55,7 @@ plot_single_scale(scale_lst, 22)
 plt.show()
 
 
-output_dir = 'outputs/hed/'
+output_dir = '/content/drive/MyDrive/IP - 7th sem/SK-SMALL/srn/outputs/'
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
@@ -65,7 +65,7 @@ for inp, fname in dataloader:
     inp = Variable(inp.cuda(gpu_id))
     out = net(inp)
     fileName = output_dir + fname[0] + '.mat'
-    # file_jpg = output_dir + fname[0] + '.jpg'
+    file_jpg = output_dir + fname[0] + '.jpg'
     tep += 1
     scio.savemat(fileName, {'sym': out.data[0, 0].cpu().numpy()})
     # mc.toimage(out.cpu().detach()[0, 0, :, :]).save(file_jpg)
